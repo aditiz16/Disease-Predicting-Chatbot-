@@ -8,6 +8,7 @@ class SymptomDataset:
         self.data = pd.read_csv(csv_file)
         self.raw_rows = len(self.data)
         self._clean()
+    # Cleaning the dataset
     def _clean(self):
         self.drop_unnamed_columns()
         self.fix_symptom_names()
@@ -17,6 +18,7 @@ class SymptomDataset:
     def drop_unnamed_columns(self):
         unnamed_cols = [col for col in self.data.columns if "Unnamed" in col]
         self.data.drop(columns=unnamed_cols, inplace=True)
+    
     def fix_symptom_names(self):
         self.data.columns = [col.strip().lower().replace(" ", "_") for col in self.data.columns]
     def fix_disease_names(self):
@@ -28,13 +30,21 @@ class SymptomDataset:
             print(missing_values[missing_values > 0])
         else:
             print("No missing values found.")
+    # Features , labels and symptoms
+    def symptoms(self):
+        return self.data.columns[self.data.columns != self.TARGET]
+    def features(self):
+        return self.data[self.symptoms()]
+    def labels(self):
+        return self.data[self.TARGET]
+    
     def clean(self):
         print("Data cleaned successfully.")
         print(f"Number of unique prognoses: {self.data[self.TARGET].nunique()}")
         print(f"Shape of the cleaned dataset: {self.data.shape}")
         print (self.data.head())
 
-if __name__ == "__main__":
-    dataset = SymptomDataset("data/Training.csv")
-    dataset.clean()
+# if __name__ == "__main__":
+#     dataset = SymptomDataset("data/Training.csv")
+#     dataset.clean()
 
