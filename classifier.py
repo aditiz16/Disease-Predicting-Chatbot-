@@ -33,11 +33,11 @@ class DiseaseClassifier:
         probabilities = self.model.predict_proba(input_df)
         return dict(zip(self.model.classes_, probabilities[0]))
 
-if __name__ == "__main__":
-    dataset = SymptomDataset("data/Training.csv")
-    classifier = DiseaseClassifier(dataset)
-    test_symptoms = ['itching', 'skin_rash', 'nodal_skin_eruptions']
-    prediction = classifier.predict(test_symptoms)
-    probabilities = classifier.predict_proba(test_symptoms)
-    print(f"Predicted disease: {prediction}")
-    print(f"Prediction probabilities: {probabilities}")
+# if __name__ == "__main__":
+#     dataset = SymptomDataset("data/Training.csv")
+#     classifier = DiseaseClassifier(dataset)
+#     test_symptoms = ['itching', 'skin_rash', 'nodal_skin_eruptions']
+#     prediction = classifier.predict(test_symptoms)
+#     probabilities = classifier.predict_proba(test_symptoms)
+#     print(f"Predicted disease: {prediction}")
+    # print(f"Prediction probabilities: {probabilities}")

@@ -29,7 +29,8 @@ class SymptomDataset:
             print("Missing values found:")
             print(missing_values[missing_values > 0])
         else:
-            print("No missing values found.")
+           pass
+            # print("No missing values found.")
     # Features , labels and symptoms
     def symptoms(self):
         return self.data.columns[self.data.columns != self.TARGET]
