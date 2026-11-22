@@ -19,7 +19,10 @@ class SymptomExtractor:
         "nodal_skin_eruptions": ["nodular rash", "nodular eruptions"],
         "vomiting": ["throwing up", "emesis", "nausea"],
         "muscle_wasting": ["muscle loss", "atrophy"],
-        "patches_in_throat": ["throat patches", "throat lesions"]
+        "patches_in_throat": ["throat patches", "throat lesions"],
+        "high_fever": ["fever"],
+        "fatigue": ["tired", "tiredness"],
+        "itching": ["itch", "itchy", "pruritus", "itchiness"]
     }
     def __init__(self, dataset):
         self.dataset = dataset
@@ -70,6 +73,10 @@ class SymptomExtractor:
         found, leftover = self._match_phrases(text)
         found += self._match_typos(leftover)
         return list(dict.fromkeys(found))
+
+    def reset(self):
+        self.symptoms = self.dataset.symptoms()
+        self.phrases = self._generate_phrases()
 
 # if __name__ == "__main__":
 #     dataset = SymptomDataset("data/Training.csv")

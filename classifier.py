@@ -33,6 +33,14 @@ class DiseaseClassifier:
         probabilities = self.model.predict_proba(input_df)
         return dict(zip(self.model.classes_, probabilities[0]))
 
+    def predict_top(self, symptoms, top_n=3):
+        input_data = {symptom: 1 if symptom in symptoms else 0 for symptom in self.dataset.symptoms()}
+        input_df = pd.DataFrame([input_data])
+        probabilities = self.model.predict_proba(input_df)
+        top_indices = probabilities[0].argsort()[-top_n:][::-1]
+        top_diseases = [(self.model.classes_[i], probabilities[0][i]) for i in top_indices]
+        return top_diseases
+
 # if __name__ == "__main__":
 #     dataset = SymptomDataset("data/Training.csv")
 #     classifier = DiseaseClassifier(dataset)
