@@ -29,7 +29,7 @@ This is not a diagnosis. Please see a doctor.
 | `extractor.py` | `SymptomExtractor`: turns free text into the dataset's symptom names |
 | `chatbot.py` | `Chatbot`: the conversation loop, memory and safety checks |
 | `evaluate.py` | Measures how accurate the model really is |
-| `plots.py` | PCA, symptom heatmap and correlation plots |
+| `visualise.py` | PCA, symptom heatmap and correlation plots |
 
 ## Getting started
 
